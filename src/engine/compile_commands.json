@@ -1,0 +1,95 @@
+[
+    {
+        "arguments": [
+            "/usr/bin/c++",
+            "-c",
+            "-v",
+            "-o",
+            "CMakeFiles/cmTC_233c1.dir/CMakeCXXCompilerABI.cpp.o",
+            "../../../../../../../../../../../usr/share/cmake-3.16/Modules/CMakeCXXCompilerABI.cpp"
+        ],
+        "directory": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/build/CMakeFiles/CMakeTmp",
+        "file": "../../../../../../../../../../../usr/share/cmake-3.16/Modules/CMakeCXXCompilerABI.cpp"
+    },
+    {
+        "arguments": [
+            "/usr/bin/cc",
+            "-c",
+            "CMakeCCompilerId.c"
+        ],
+        "directory": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/build/CMakeFiles/3.16.3/CompilerIdC",
+        "file": "CMakeCCompilerId.c"
+    },
+    {
+        "arguments": [
+            "/usr/bin/cc",
+            "-c",
+            "-v",
+            "-o",
+            "CMakeFiles/cmTC_be78f.dir/CMakeCCompilerABI.c.o",
+            "../../../../../../../../../../../usr/share/cmake-3.16/Modules/CMakeCCompilerABI.c"
+        ],
+        "directory": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/build/CMakeFiles/CMakeTmp",
+        "file": "../../../../../../../../../../../usr/share/cmake-3.16/Modules/CMakeCCompilerABI.c"
+    },
+    {
+        "arguments": [
+            "/usr/bin/c++",
+            "-c",
+            "-I../includes",
+            "-I../",
+            "-g",
+            "-g",
+            "-O0",
+            "-std=gnu++2a",
+            "-o",
+            "CMakeFiles/EngineE.dir/src/DebugE.cpp.o",
+            "../src/DebugE.cpp"
+        ],
+        "directory": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/build",
+        "file": "../src/DebugE.cpp"
+    },
+    {
+        "arguments": [
+            "/usr/bin/c++",
+            "-c",
+            "-I../includes",
+            "-I../",
+            "-g",
+            "-g",
+            "-O0",
+            "-std=gnu++2a",
+            "-o",
+            "CMakeFiles/EngineE.dir/src/CoreE.cpp.o",
+            "../src/CoreE.cpp"
+        ],
+        "directory": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/build",
+        "file": "../src/CoreE.cpp"
+    },
+    {
+        "arguments": [
+            "/usr/bin/c++",
+            "-c",
+            "CMakeCXXCompilerId.cpp"
+        ],
+        "directory": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/build/CMakeFiles/3.16.3/CompilerIdCXX",
+        "file": "CMakeCXXCompilerId.cpp"
+    },
+    {
+        "arguments": [
+            "/usr/bin/c++",
+            "-c",
+            "-I../includes",
+            "-I../",
+            "-g",
+            "-g",
+            "-O0",
+            "-std=gnu++2a",
+            "-o",
+            "CMakeFiles/EngineE.dir/src/EngineE.cpp.o",
+            "../src/EngineE.cpp"
+        ],
+        "directory": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/build",
+        "file": "../src/EngineE.cpp"
+    }
+]
