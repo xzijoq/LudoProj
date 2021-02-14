@@ -61,8 +61,13 @@ if [[ $1 = git ]]
 then
     ./run.sh clean
     git add .
-    git commit -m "test"
-    git push origin master
+    if [[ $2 = "" ]]
+    then
+        git commit -m "test"
+    else
+        git commit -m $2
+    fi
+    git push origin main
 fi
 
 if [[ $1 = copy ]]

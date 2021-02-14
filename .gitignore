@@ -1,0 +1,20 @@
+
+build
+build/**
+
+.mono
+.mono/**
+.vscode
+.vscode/**
+.clangd
+.clangd/**
+*~
+ #*
+ #**
+**~
+
+./ludo-cpp/.mono
+./ludo-cpp/.mono/**
+./ludo-cpp/.import
+./ludo-cpp/.import/**
+./ludo-cpp/bin/x11/libludo_engine.so
