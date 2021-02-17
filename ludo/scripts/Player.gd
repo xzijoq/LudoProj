@@ -86,15 +86,18 @@ func setBRect(value):
 	BRect=value
 
 func _process(_delta):
-	if Input.is_action_just_pressed("l_click"):
 
+	if Input.is_action_just_pressed("l_click"):
 
 	
 		pass
 	if Input.is_action_pressed("r_click"):
 		#UpdateGoti()
+
+		get_child(1).Selected=1;
 		pass
 	$p.global_position=self.position
 
 	SetInBoard()
+
 

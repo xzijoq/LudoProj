@@ -7,9 +7,11 @@ func SetCellNumber(value):
 	CellNumber=value
 	
 	$Label.text=String(CellNumber)
-#	for i in Gl.SafeSq:
-#		if CellNumber==i:
-#			$Sprite.texture=SfCellSp
+	for i in Gl.SafeSq:
+		if CellNumber==i:
+			$Sprite.texture=SfCellSp
+			
+			$Sprite.self_modulate=Color("5affffff")
 	pass
 func _ready():
 	

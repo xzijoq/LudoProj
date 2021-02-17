@@ -31,7 +31,7 @@ class DebugE
     static void DisplayBits( u64 num, int sp = 8,
                              bool displayDecimalVal = false );
     static void DisBits(u64 count,u64 num);
-
+    static void DisplayValidInput(ValidInput inp);
     static inline bool IsInRange( int value, int min, int max )
     {
         return ( value >= min && value < max );

@@ -1,49 +1,49 @@
 [
 {
   "directory": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/build",
-  "command": "/usr/bin/c++  -Dludo_engine_EXPORTS -I../../godot-cpp/godot_headers -I../../godot-cpp/include -I../../godot-cpp/include/core -I../../godot-cpp/include/gen -I../../godot-cpp/bin -I../includes -I../src/engine/includes -I../src/engine  -g -fPIC   -std=gnu++2a -o CMakeFiles/ludo_engine.dir/src/GdRegClass.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/GdRegClass.cpp",
+  "command": "/usr/lib/llvm-10/bin/clang++  -Dludo_engine_EXPORTS -I../../godot-cpp/godot_headers -I../../godot-cpp/include -I../../godot-cpp/include/core -I../../godot-cpp/include/gen -I../../godot-cpp/bin -I../includes -I../src/engine/includes -I../src/engine  -g -fPIC   -std=gnu++2a -o CMakeFiles/ludo_engine.dir/src/GdRegClass.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/GdRegClass.cpp",
   "file": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/GdRegClass.cpp"
 },
 
 {
   "directory": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/build",
-  "command": "/usr/bin/c++  -Dludo_engine_EXPORTS -I../../godot-cpp/godot_headers -I../../godot-cpp/include -I../../godot-cpp/include/core -I../../godot-cpp/include/gen -I../../godot-cpp/bin -I../includes -I../src/engine/includes -I../src/engine  -g -fPIC   -std=gnu++2a -o CMakeFiles/ludo_engine.dir/src/GameEngine.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/GameEngine.cpp",
+  "command": "/usr/lib/llvm-10/bin/clang++  -Dludo_engine_EXPORTS -I../../godot-cpp/godot_headers -I../../godot-cpp/include -I../../godot-cpp/include/core -I../../godot-cpp/include/gen -I../../godot-cpp/bin -I../includes -I../src/engine/includes -I../src/engine  -g -fPIC   -std=gnu++2a -o CMakeFiles/ludo_engine.dir/src/GameEngine.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/GameEngine.cpp",
   "file": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/GameEngine.cpp"
 },
 
 {
   "directory": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/build",
-  "command": "/usr/bin/c++  -Dludo_engine_EXPORTS -I../../godot-cpp/godot_headers -I../../godot-cpp/include -I../../godot-cpp/include/core -I../../godot-cpp/include/gen -I../../godot-cpp/bin -I../includes -I../src/engine/includes -I../src/engine  -g -fPIC   -std=gnu++2a -o CMakeFiles/ludo_engine.dir/src/engine/src/EngineE.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/EngineE.cpp",
+  "command": "/usr/lib/llvm-10/bin/clang++  -Dludo_engine_EXPORTS -I../../godot-cpp/godot_headers -I../../godot-cpp/include -I../../godot-cpp/include/core -I../../godot-cpp/include/gen -I../../godot-cpp/bin -I../includes -I../src/engine/includes -I../src/engine  -g -fPIC   -std=gnu++2a -o CMakeFiles/ludo_engine.dir/src/engine/src/EngineE.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/EngineE.cpp",
   "file": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/EngineE.cpp"
 },
 
 {
   "directory": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/build",
-  "command": "/usr/bin/c++  -Dludo_engine_EXPORTS -I../../godot-cpp/godot_headers -I../../godot-cpp/include -I../../godot-cpp/include/core -I../../godot-cpp/include/gen -I../../godot-cpp/bin -I../includes -I../src/engine/includes -I../src/engine  -g -fPIC   -std=gnu++2a -o CMakeFiles/ludo_engine.dir/src/engine/src/DebugE.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/DebugE.cpp",
+  "command": "/usr/lib/llvm-10/bin/clang++  -Dludo_engine_EXPORTS -I../../godot-cpp/godot_headers -I../../godot-cpp/include -I../../godot-cpp/include/core -I../../godot-cpp/include/gen -I../../godot-cpp/bin -I../includes -I../src/engine/includes -I../src/engine  -g -fPIC   -std=gnu++2a -o CMakeFiles/ludo_engine.dir/src/engine/src/DebugE.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/DebugE.cpp",
   "file": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/DebugE.cpp"
 },
 
 {
   "directory": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/build",
-  "command": "/usr/bin/c++  -Dludo_engine_EXPORTS -I../../godot-cpp/godot_headers -I../../godot-cpp/include -I../../godot-cpp/include/core -I../../godot-cpp/include/gen -I../../godot-cpp/bin -I../includes -I../src/engine/includes -I../src/engine  -g -fPIC   -std=gnu++2a -o CMakeFiles/ludo_engine.dir/src/engine/src/CoreE.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/CoreE.cpp",
+  "command": "/usr/lib/llvm-10/bin/clang++  -Dludo_engine_EXPORTS -I../../godot-cpp/godot_headers -I../../godot-cpp/include -I../../godot-cpp/include/core -I../../godot-cpp/include/gen -I../../godot-cpp/bin -I../includes -I../src/engine/includes -I../src/engine  -g -fPIC   -std=gnu++2a -o CMakeFiles/ludo_engine.dir/src/engine/src/CoreE.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/CoreE.cpp",
   "file": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/CoreE.cpp"
 },
 
 {
   "directory": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/build",
-  "command": "/usr/bin/c++   -I../src/engine/includes -I../src/engine  -g   -g -O0 -std=gnu++2a -o src/engine/CMakeFiles/EngineE.dir/src/EngineE.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/EngineE.cpp",
+  "command": "/usr/lib/llvm-10/bin/clang++   -I../src/engine/includes -I../src/engine  -g   -g -O0 -std=gnu++2a -o src/engine/CMakeFiles/EngineE.dir/src/EngineE.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/EngineE.cpp",
   "file": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/EngineE.cpp"
 },
 
 {
   "directory": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/build",
-  "command": "/usr/bin/c++   -I../src/engine/includes -I../src/engine  -g   -g -O0 -std=gnu++2a -o src/engine/CMakeFiles/EngineE.dir/src/DebugE.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/DebugE.cpp",
+  "command": "/usr/lib/llvm-10/bin/clang++   -I../src/engine/includes -I../src/engine  -g   -g -O0 -std=gnu++2a -o src/engine/CMakeFiles/EngineE.dir/src/DebugE.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/DebugE.cpp",
   "file": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/DebugE.cpp"
 },
 
 {
   "directory": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/build",
-  "command": "/usr/bin/c++   -I../src/engine/includes -I../src/engine  -g   -g -O0 -std=gnu++2a -o src/engine/CMakeFiles/EngineE.dir/src/CoreE.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/CoreE.cpp",
+  "command": "/usr/lib/llvm-10/bin/clang++   -I../src/engine/includes -I../src/engine  -g   -g -O0 -std=gnu++2a -o src/engine/CMakeFiles/EngineE.dir/src/CoreE.cpp.o -c /home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/CoreE.cpp",
   "file": "/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/LudoProj/src/engine/src/CoreE.cpp"
 }
 ]

@@ -177,6 +177,8 @@ void DebugE::DisplayPMove( MoveE mv )
     for ( int i = 3; i >= 0; i-- ) {
         ( mv.PBits() & 1ULL << i ) ? cout << 1 : cout << 0;
     }
+
+    cout<<" ErrorCode: "<<mv.Error();
     cout << "\n";
 }
 
@@ -198,4 +200,13 @@ void DebugE::DisBits( u64 count, u64 num )
     for ( int i = count - 1; i >= 0; i-- ) {
         ( num & 1ULL << i ) ? cout << 1 : cout << 0;
     }
+}
+void DebugE::DisplayValidInput(ValidInput value){
+    cout<<"Error:"<<value.Error()<<" Roll: "<<value.Roll();
+    cout<<" pl:"<<value.Pl()<<" Pi:";
+    for ( int i = 3; i >= 0; i-- ) {
+        ( value.Pi() & 1ULL << i ) ? cout << 1 : cout << 0;
+    }
+    cout<<"\n";
+
 }

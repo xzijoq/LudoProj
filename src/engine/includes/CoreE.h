@@ -6,7 +6,7 @@
 class BitsE
 {
    public:
-    u64                  PInt{0};
+    u64                  PInt{ 0 };
     static constexpr u64 pow[]{
         0b0,     0b1,      0b11,      0b111,     0b1111,  // wow
         0b11111, 0b111111, 0b1111111, 0b11111111
@@ -23,14 +23,20 @@ class BitsE
 
     inline void SetBits( u64 count, u64 bits, u64 posi )
     {
+        // should send some error possibly via return type
+        if ( bits > pow[count] ) { bits = pow[count]; }
+
         // clear those bits to zero and set new
         PInt &= ~( pow[count] << posi );
+
         PInt |= bits << posi;
     }
     inline u64 GetBits( u64 count, u64 posi )
     {
         return ( PInt >> posi ) & pow[count];
     }
+
+    inline u64 ToInt() { return PInt; }
 };
 
 //  PPnum(4 (0-16)) //Switch Into 7// EndSq 7// InSq 7// Square 7
@@ -78,7 +84,8 @@ class SquareE : public BitsE
     inline u64 Pl( u64 pl ) { return ( GetBits( M_Pi, pl * M_Pi ) ); }
     inline u64 PP( u64 pl, u64 pi ) { return GetBit( ( pl * M_Pi + pi ) ); }
     inline u64 PP( u64 PPnum ) { return GetBit( PPnum ); }
-    inline u64 IsSafe(){return GetBit(26);}
+    inline u64 IsSafe() { return GetBit( 26 ); }
+    
 
     inline void PushPP( u64 pl, u64 pi ) { SetBit( pl * M_Pi + pi ); }
     inline void PushPP( u64 PPnum ) { SetBit( PPnum ); }
@@ -87,10 +94,10 @@ class SquareE : public BitsE
 
     void CheckSquare();  // useless currently
 
-    inline void SetSafe(){SetBit(26);}
+    inline void SetSafe() { SetBit( 26 ); }
 };
 
-// from7  to7  PP4 isCap1  Cpl2 pieBits4  lsb->msb
+// from7  to7  PP4 isCap1  Cpl2 pieBits4  lsb->msb error
 //   0     7    14  18     19    21 ---    25
 class MoveE : public BitsE
 {
@@ -104,6 +111,7 @@ class MoveE : public BitsE
     inline void CPl( u64 pl ) { SetBits( 2, pl, 19 ); }
     inline void PBits( u64 bits ) { SetBits( 4, bits, 21 ); }
     inline void CPiece( u64 piece ) { SetBit( 21 + piece ); }
+    inline void Error( u64 code ) { SetBits( 4, code, 25 ); }
 
     inline u64 From() { return GetBits( 7, 0 ); }
     inline u64 To() { return GetBits( 7, 7 ); }
@@ -113,7 +121,30 @@ class MoveE : public BitsE
     inline u64 IsCap() { return GetBits( 1, 18 ); }
     inline u64 CPl() { return GetBits( 2, 19 ); }
     inline u64 PBits() { return GetBits( 4, 21 ); }
+    inline u64 Error() { return GetBits( 4, 25 ); }
 
     void CheckMove();
+    friend class DebugE;
+};
+
+// nm-sz:  player-2  pieces-4 error-4   DiceRoll-4
+// start:    0         2           6     10
+
+// nm-sz: Error-4  Roll-4 player -2 piece-4
+// Start: 0          4     8          10
+class ValidInput : public BitsE
+{
+   public:
+    inline void Error( u64 code ) { SetBits( 4, code, 0 ); }
+    inline void Roll( u64 roll ) { SetBits( 4, roll, 4 ); }
+    inline void Pl( u64 pl ) { SetBits( 2, pl, 8 ); }
+    inline void Pi( u64 pi ) { SetBit( 10 + pi ); }
+
+    inline u64 Error() { return GetBits( 4, 0 ); }
+    inline u64 Roll() {  return GetBits( 4, 4 ); }
+    inline u64 Pl() { return GetBits( 2, 8 ); }
+    inline u64 Pi() { return GetBits( 4, 10 ); }
+    inline u64 HasPi( u64 which ) { return GetBit( 10 + which ); }
+    inline void Clear(){PInt=(u64)0;}
     friend class DebugE;
 };

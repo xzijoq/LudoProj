@@ -4,6 +4,10 @@
 #include "CoreE.h"
 int   man();
 MoveE OnPieceClicked( u64 pl, u64 pi );
+
+ValidInput        GetValidInputs(int roll);
+std::vector<MoveE> OnPC( const u64 pl, const u64 pi );
+int EndTurn();
 using std::array;
 using std::vector;
 

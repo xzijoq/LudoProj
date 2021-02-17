@@ -20,6 +20,7 @@ class GameEngine : public godot::Node2D
    private:
     Node2D* DBoard;
     godot::Array Moves;
+    godot::Array ValidInp;
     
 
    public:
@@ -29,7 +30,9 @@ class GameEngine : public godot::Node2D
     void _ready();
     void _process();
     void InputClicked( int player, int piece );
-    void ApplyMove( MoveE PackedMove );
+    void ApplyMove( vector<MoveE> PackedMove );
+    godot::Array  PGclicked(int pl,int pi);
+    godot::Array GetValidInp();
     godot::Array GetMoves();
 
    public:

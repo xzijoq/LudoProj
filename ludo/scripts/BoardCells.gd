@@ -93,7 +93,7 @@ func RotateBoard(angle:int):
 
 		
 var io=0
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("l_click"):
 
 		io+=1

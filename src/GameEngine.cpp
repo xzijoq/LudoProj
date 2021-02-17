@@ -1,96 +1,57 @@
+#include "GameEngine.h"
 
 #include <bits/stdint-intn.h>
 #include <sys/types.h>
 
-#include "GameEngine.h"
+#include "Array.hpp"
+#include "CoreE.h"
+#include "DebugE.h"
 
 using namespace godot;
 
-//#define Mpp( pl, pi, sq ) DBoard->call( "MovePP_TO", pl, pi, sq )
-    
-void GameEngine::_ready()
+void GameEngine::_ready() { man(); }
+
+godot::Array GameEngine::GetValidInp()
 {
-    man();
+    ValidInp.clear();
+    ValidInput vi;
+    vi = GetValidInputs( 1 );
+    // DebugE::DisplayValidInput(vi);
+    ValidInp.append( vi.Error() );
+    ValidInp.append( vi.Roll() );
+    ValidInp.append( vi.Pl() );
+    for ( auto i = 0; i < 4; i++ ) { ValidInp.append( vi.HasPi( i ) ); }
+
+    return ValidInp;
 }
 
+godot::Array GameEngine::PGclicked( int pl, int go )
+{
+    vector<MoveE> mv;
+    mv = OnPC( pl, go );
 
-void GameEngine::ApplyMove( MoveE mv )
-{   // DebugE::DisplaySquares();
-    godot::Array move;
+    // move.clear();
 
-    move.clear();
     Moves.clear();
-    move.resize(3);    
-    //Mpp( mv.Pl(), mv.Pi(), mv.To() );
-    move[0]=mv.Pl();
-    move[1]=mv.Pi();
-    move[2]=mv.To();
- 
-    Moves.append(move);
-    if ( mv.IsCap() == 1 ) {
-        int player = mv.CPl();
-
-        for ( u64 i = 0; i < 4; i++ ) {
-            if ( ( ( mv.PBits() >> i ) & (u64)1 ) != 0 ) {
-               // Mpp( player, i, 72 );
-                //std::cout<<"i is :" <<i<<" player is "<<player<<"\n";
-                //wow man is this waht you want
-                godot::Array chut;
-                chut.clear();
-                chut.resize(3);
-                chut[0]=player;
-                chut[1]=i;
-                chut[2]=72;
-                Moves.append(chut);
-            
-            }
-        }
+    for ( auto i = 0; i < mv.size(); i++ )
+    {
+        godot::Array move;
+        move.clear();
+        move.resize( 3 );
+        move[0] = mv[i].Pl();
+        move[1] = mv[i].Pi();
+        move[2] = mv[i].To();
+        Moves.append( move );
     }
-}
-
-void GameEngine::_register_methods()
-{
-    register_method( "_process", &GameEngine::_process );
-    register_method( "_ready", &GameEngine::_ready );
-    register_method( "InputClicked", &GameEngine::InputClicked );
-    register_method("GetMoves",&GameEngine::GetMoves);
-}
-
-godot::Array GameEngine::GetMoves(){
-    //return 123;
-    /*
-   Mpp( mv.Pl(), mv.Pi(), mv.To() );
-
-    if ( mv.IsCap() == 1 ) {
-        int player = mv.CPl();
-
-        for ( u64 i = 0; i < 4; i++ ) {
-            if ( ( ( mv.PBits() >> i ) & (u64)1 ) != 0 ) {
-                Mpp( player, i, 72 );
-            }
-        }
-    }*/
- 
-
+    //for ( auto i : mv ) { DebugE::DisplayPMove( i );
+    //std::cout<<mv.size(); }
+    EndTurn();
     return Moves;
- 
 }
+godot::Array GameEngine::GetMoves() { return Moves; }
+
 void GameEngine::InputClicked( int player, int piece )
-{
-  //  Godot::print("fff");
-
-      std::string s1 = "Player: " + std::to_string( player ) +
-                     " Piece: " + std::to_string( piece );
-
-    //  const char *wow = s1.c_str();
-     //Godot::print( wow );
-
-    MoveE tt;
-    tt=OnPieceClicked(player, piece);
-    
-
-    ApplyMove( tt );
-   // DebugE::DisplayPMove(test);
+{  // DebugE::DisplayPMove(test);
 }
 
 void GameEngine::_init()
@@ -100,7 +61,12 @@ void GameEngine::_init()
 
 void GameEngine::_process() {}
 
-
-
-
-
+void GameEngine::_register_methods()
+{
+    register_method( "_process", &GameEngine::_process );
+    register_method( "_ready", &GameEngine::_ready );
+    register_method( "InputClicked", &GameEngine::InputClicked );
+    register_method( "GetMoves", &GameEngine::GetMoves );
+    register_method( "PGclicked", &GameEngine::PGclicked );
+    register_method( "GetValidInp", &GameEngine::GetValidInp );
+}
