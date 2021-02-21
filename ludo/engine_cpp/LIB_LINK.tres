@@ -1,5 +1,7 @@
 [gd_resource type="GDNativeLibrary" format=2]
 
 [resource]
+entry/Android.armeabi-v7a = "res://bin/libludo_engine.so"
 entry/X11.64 = "res://bin/libludo_engine.so"
+dependency/Android.armeabi-v7a = [  ]
 dependency/X11.64 = [  ]

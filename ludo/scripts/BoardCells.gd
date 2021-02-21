@@ -108,10 +108,14 @@ func _process(_delta):
 
 
 func vsize_changed():
+	var ro=Gra.BoardRotation
 	Gra.SetGameScale()
-	Gra.BoardRotation=0
+	#Gra.BoardRotation=0
+	RotateBoard(0)
 	InitPosi()
 	SetBoard()
+	#yield(get_tree(),"idle_frame")
+	RotateBoard(ro)
 
 	#UpGraBdSz()
 

@@ -30,7 +30,7 @@ constexpr int BoardSize=74;
 
 constexpr std::array SafeSq       = { 3,  11, 16, 24,         29,
                                 37, 42, 50, START_POSI, END_POSI };
-constexpr std::array StartSq      = { 3, 16, 29, 2 };
+constexpr std::array StartSq      = {3,3,3,3};//{ 3, 16, 29, 2 };
 constexpr std::array SwitchSq     = { 1, 14, 27, 40 };
 constexpr std::array SwitchIntoSq = { 52, 57, 62, 67 };
 constexpr std::array EndSq        = { 56, 61, 66, 71 };

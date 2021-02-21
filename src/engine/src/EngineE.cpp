@@ -13,24 +13,12 @@ using std::cout;
 std::array<SquareE, G2::BoardSize>                   Sq;
 std::array<PieceE, G2::MAX_PLAYERS * G2::MAX_PIECES> Pp;  // PlayerPiece
 vector<MoveE>                                        MoveStack;
-vector<MoveE> MoveList;  // TODO need to not resize so many times
-int EndTurn();
-int        TurnNumber = 0;
-int        RollG      = 0;
-ValidInput Out;
-enum StateS
-{
-    GameInitS,
-    InitTurnS,
-    GenRollS,           // and send it
-    WaitForDiceClickS,  // or power
-    GenValidInputsS,    // and send it
-    WaitForValidInputS,
+vector<u64> MoveList;  // TODO need to not resize so many times
+int         EndTurn();
+int         TurnNumber = 0;
+int         RollG      = 1;
+ValidInput  OutVIn;
 
-    MakeMoveS,  // GenMoveListNandSendIt
-    EndTurnS
-};
-StateS CurrentState;
 enum TurnS
 {
     Player0S,
@@ -42,49 +30,44 @@ TurnS CurrentTurn;
 
 void PushMove( MoveE mv ) { MoveStack.push_back( mv ); }
 
-int StartTurn( int player )
+int StartTurn()
 {
     // if ( CurrentState != InitTurnS ) { return -CurrentState; }
     TurnNumber++;
-    CurrentTurn = (TurnS)player;
+
     // std::cout << "current Turn player: " << CurrentTurn << "\n";
     MoveList.clear();
 
-    CurrentState = GenValidInputsS;
     return 0;
 }
 
-ValidInput GetValidInputs( int roll )
+u64 GetValidInputs( int roll )
 {
     RollG = roll;
-    // if ( CurrentState != GenValidInputsS ) {
-    //    Out.Error(CurrentState);
-    //    return Out;
-    //
-    //    }
-    Out.Clear();
-    Out.Roll( RollG );
-    Out.Pl( CurrentTurn );
+
+    OutVIn.Clear();
+    OutVIn.Roll( RollG );
+    OutVIn.Pl( CurrentTurn );
 
     for ( auto piece = 0; piece < G2::MAX_PIECES; piece++ )
     {
         u64 pp = PieceE::GetPPnum( CurrentTurn, piece );
 
         // if ( Pp[pp].Sq() != G2::START_POSI &&
-        if ( Pp[pp].Sq() + RollG < Pp[pp].EndSq() ) { Out.Pi( piece ); }
+        if ( Pp[pp].Sq() + RollG < Pp[pp].EndSq() ) { OutVIn.Pi( piece ); }
         if ( ( RollG == 6 || RollG == 1 ) && Pp[pp].Sq() == G2::START_POSI )
-        { Out.Pi( piece ); }
+        { OutVIn.Pi( piece ); }
     }
 
-    CurrentState = WaitForValidInputS;
-    return Out;
+    return OutVIn.PInt;
 }
 
 // currently OnPc need more for powers
-//add move powers here
+// add move powers here
 
-vector<MoveE> OnPC( const u64 pl, const u64 pi )
+vector<u64> OnPC( const u64 pl, const u64 pi )
 {
+    // MoveList.clear();
     /// DebugE::PrintPieceArray();
     // init data-------------------------------------
     assert( pl < G2::MAX_PLAYERS && pi < G2::MAX_PIECES );
@@ -94,11 +77,13 @@ vector<MoveE> OnPC( const u64 pl, const u64 pi )
     const u64 From = Pp[i].Sq();
     u64       To   = 0;
 
+    // DebugE::DisplayValidInput(OutVIn);
+
     // Verify ValidInput
-    if ( ( pl != Out.Pl() ) && ( !Out.HasPi( pi ) ) )
+    if ( ( pl != OutVIn.Pl() ) && ( !OutVIn.HasPi( pi ) ) )
     {
-        std::cout << "InvalidIputClientHacked";
-        return MoveList;
+        std::cout << "\nInvalidIputClientHacked\n";
+        // return MoveList;
     }
 
     // TODO :validate move
@@ -162,7 +147,7 @@ vector<MoveE> OnPC( const u64 pl, const u64 pi )
                         cMv.Pi( piece );
                         cMv.From( To );
                         cMv.To( G2::START_POSI );
-                        MoveList.push_back( cMv );
+                        MoveList.push_back( cMv.PInt );
                         // DebugE::DisplayPMove(cMv);
                     }
                 }
@@ -191,37 +176,42 @@ vector<MoveE> OnPC( const u64 pl, const u64 pi )
     UpdateMove();
     //  DebugE::DisplaySquares();
     // DebugE::DisplayPMove( Mv );
-    MoveList.push_back( Mv );
+    MoveList.push_back( Mv.PInt );
     // no cap as
 
     // Mv.CheckMove();
     // TODO: push move to stack
-    //EndTurn();
+    // EndTurn();
     return MoveList;
 }
 
-
-int EndTurn()
+int EndTurnM()
 {
-//Calling this will clear MoveList via a call to initmove
-    
+    // Calling this will clear MoveList via a call to initmove
+
     // if ( CurrentState != MakeMoveS ) { return -CurrentState; }
     int NextPlayer = CurrentTurn;
     // endturn
     // push MoveTOstack for roll back
-    if ( RollG != 6 ) { NextPlayer = ( NextPlayer + 1 ) % 4; }
+    if ( RollG != 6 )
+    {
+        NextPlayer = ( NextPlayer + 1 ) % 4;
+        // if (NextPlayer==0){NextPlayer=3;}
+        // else{NextPlayer=0;}
+    }
+
+    // NextPlayer=0;
     // cout << "turn Ended\n";
- 
-    CurrentState = InitTurnS;
-    StartTurn( NextPlayer );
+    CurrentTurn = (TurnS)NextPlayer;
+
+    StartTurn();
     return 0;
 }
 
 int man()
 {
-    CurrentState = GameInitS;
-
-    ValidInput in;
+    CurrentTurn = Player0S;
+    // ValidInput in;
 
     InitBoardE();
     return 0;
@@ -263,115 +253,3 @@ int main3()
     // cout<<"lsize is: "<<G2::LudoBoard.size();
     return 0;
 }
-/*
-MoveE OnPieceClicked( const u64 pl, const u64 pi )
-{
-    /// DebugE::PrintPieceArray();
-    // init data-------------------------------------
-    assert( pl < G2::MAX_PLAYERS && pi < G2::MAX_PIECES );
-    const int Roll = 1;
-    MoveE     Mv;
-    const u64 i    = PieceE::GetPPnum( pl, pi );
-    const u64 From = Pp[i].Sq();
-    u64       To   = 0;
-
-    auto UpdateMove = [&]() {
-        Mv.From( From );
-        Mv.To( To );
-        Mv.Pl( pl );
-        Mv.Pi( pi );
-    };
-    auto MoveBase = [&]() {
-        Pp[i].Sq( To );
-        Sq[From].PopPP( i );
-        Sq[To].PushPP( i );
-    };
-    // TODO :validate move
-    // cout<<"\nthis : "<<Pp[i].Sq()<<"\n";
-    // Start Sq-----------------------------
-    if ( Pp[i].Sq() == G2::START_POSI ) { To = G2::StartSq[pl]; }
-    // else
-    else if ( From < Pp[i].InSq() )
-    {
-        To = ( From + Roll ) % G2::OUTER_SZ;
-    }
-    else
-    {
-        To = ( From + Roll );
-    }
-
-    // Switch into safe zone---------------------
-    if ( From < G2::OUTER_SZ )
-    {  // if in the path from->to if find insq swithc into it
-        int tTo = To;
-
-        for ( int z = From, y = 0; z != tTo; z = ( z + 1 ) % G2::OUTER_SZ )
-        {
-            if ( Pp[i].SwiSq() == z )
-            {
-                // calculate the moves left
-                int movesLeft = Roll - y - 1;
-                To            = Pp[i].InSq() + movesLeft;
-            }
-            y++;
-        }
-    }
-
-    // END----------------------------------
-    if ( To > Pp[i].EndSq() ) { To = G2::END_POSI; }
-
-    // capture------------------------------------------
-    if ( !Sq[To].IsSafe() )
-    {
-        for ( int q = 0; q < G2::MAX_PLAYERS; q++ )
-        {
-            if ( Sq[To].Pl( q ) != 0 && q != pl )
-            {
-                MoveE cMv;
-
-                cMv.IsCap( 1 );
-                Mv.IsCap( 1 );
-                Mv.CPl( q );
-                Mv.PBits( Sq[To].Pl( q ) );
-
-                for ( int k = 0; k < G2::MAX_PIECES; k++ )
-                {
-                    if ( Sq[To].PP( q, k ) != 0 )
-                    {
-                        u64 j = PieceE::GetPPnum( q, k );
-
-                        Pp[j].Sq( G2::START_POSI );
-                        Sq[To].PopPP( q, k );
-                        Sq[G2::START_POSI].PushPP( q, k );
-
-                        cMv.Pl( q );
-                        cMv.Pi( k );
-                        cMv.From( To );
-                        cMv.To(G2::StartSq[q] );
-                        MoveList.push_back(cMv);
-                    }
-                }
-            }
-        }
-    }
-
-    // no cap case
-    // adjust player
-    // move base-------------------------------------
-    MoveBase();
-    // update move -------------------------------
-
-    UpdateMove();
-    //  DebugE::DisplaySquares();
-    // DebugE::DisplayPMove( Mv );
-    MoveList.push_back( Mv );
-    // no cap as
-
-    // Mv.CheckMove();
-    // TODO: push move to stack
-
-    return Mv;
-}
-
-void MoveTo() {}
-*/

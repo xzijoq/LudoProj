@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/Cell.gd" type="Script" id=2]
@@ -7,6 +7,9 @@
 [sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 26.8099, 28.6271 )
 
 [node name="Cell" type="Area2D"]
 script = ExtResource( 2 )
@@ -30,3 +33,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )

@@ -16,7 +16,7 @@ AllowShortLoopsOnASingleLine: 'true'
 AlwaysBreakTemplateDeclarations: 'Yes'
 BinPackArguments: 'true'
 BinPackParameters: 'true'
-BreakBeforeBraces: Allman
+BreakBeforeBraces: Attach
 BreakBeforeTernaryOperators: 'true'
 Cpp11BracedListStyle: 'true'
 FixNamespaceComments: 'true'

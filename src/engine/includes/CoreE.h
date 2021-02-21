@@ -85,6 +85,7 @@ class SquareE : public BitsE
     inline u64 PP( u64 pl, u64 pi ) { return GetBit( ( pl * M_Pi + pi ) ); }
     inline u64 PP( u64 PPnum ) { return GetBit( PPnum ); }
     inline u64 IsSafe() { return GetBit( 26 ); }
+
     
 
     inline void PushPP( u64 pl, u64 pi ) { SetBit( pl * M_Pi + pi ); }

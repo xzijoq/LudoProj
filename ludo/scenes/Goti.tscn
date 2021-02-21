@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/Goti.gd" type="Script" id=1]
 [ext_resource path="res://assets/PlayerIcons/p0.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 27.5379, 28.8505 )
 
 [node name="Goti" type="Area2D"]
 script = ExtResource( 1 )
@@ -14,9 +17,13 @@ margin_left = -32.0
 margin_top = -32.0
 margin_right = 32.0
 margin_bottom = 32.0
+mouse_filter = 1
 flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

@@ -1,5 +1,5 @@
 
-#include <bits/stdint-intn.h>
+//#include <bits/stdint-intn.h>
 
 
 #include <GData.h>
@@ -27,13 +27,17 @@ class GameEngine : public godot::Node2D
     static void _register_methods();
     void        _init();
 
-    void _ready();
-    void _process();
-    void InputClicked( int player, int piece );
-    void ApplyMove( vector<MoveE> PackedMove );
+    //void _ready();
+    //void _process();
+
+    void StartGame();
     godot::Array  PGclicked(int pl,int pi);
     godot::Array GetValidInp();
     godot::Array GetMoves();
+    godot::Array GetSquare(int sq);
+
+    void StartTurnE(int player);
+    void EndTurnE();
 
    public:
 };

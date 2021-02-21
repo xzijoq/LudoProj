@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
+"base": "Area2D",
 "class": "Goti",
 "language": "GDScript",
 "path": "res://scripts/Goti.gd"
@@ -21,13 +21,14 @@ _global_script_class_icons={
 [application]
 
 config/name="ludo"
+run/main_scene="res://scenes/GameDisplay.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Gl="*res://global_scripts/global/Gl.gd"
 Gra="*res://global_scripts/global/Gra.gd"
-Sigil="*res://global_scripts/global/Sigil.gd"
+EngineGd="*res://global_scripts/global/EngineGd.gd"
 
 [display]
 
@@ -51,6 +52,12 @@ r_click={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[layer_names]
+
+3d_render/layer_1="Goti"
+3d_render/layer_2="Cells"
+3d_render/layer_3="Other"
 
 [rendering]
 

@@ -76,6 +76,7 @@ func vSchanged():
 	$p.scale=Gra.Scale_l*2
 	self.scale=Gra.Scale_l
 	SetInBoard()
+	PlaceGotiz()
 
 
 func setPlId(value):

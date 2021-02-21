@@ -15,6 +15,12 @@ cmake_b(){
 }
 
 
+if [[ $1 = android ]]
+then
+    /home/babayaga/Android/Sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi30-clang++ -fPIC -o bin/GameEngine.o  -c src/GameEngine.cpp  -g -O3 -std=c++2a -I../godot-cpp/include -I../godot-cpp/include/core -I../godot-cpp/include/gen -I../godot-cpp/godot_headers -Isrc/engine/includes -Isrc
+    /home/babayaga/Android/Sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi30-clang++ -o bin/libludo_engine_android.so -shared src/GameEngine.o -L../godot-cpp/bin -l/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/godot-cpp/bin/libgodot-cpp.android.debug.armv7.a 
+
+fi
 
 if [[ $1 = gg ]]
 then
