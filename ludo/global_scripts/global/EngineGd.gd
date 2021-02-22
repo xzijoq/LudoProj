@@ -23,8 +23,8 @@ enum {
 #var inp=[]
 func _ready():
 	VInp.resize(8)
-	En=EngineCpp.new()
-	#En=fuckem.new()
+	#En=EngineCpp.new()
+	En=fuckem.new()
 	OS.window_position.x=2525
 
 

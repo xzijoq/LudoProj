@@ -102,12 +102,11 @@ void GameEngine::_init()
     // quick_exit(12);
 }
 
-//void GameEngine::_process() {}
+
 
 void GameEngine::_register_methods()
 {
-   // register_method( "_process", &GameEngine::_process );
-    //register_method( "_ready", &GameEngine::_ready );
+
  
     register_method( "GetMoves", &GameEngine::GetMoves );
     register_method( "PGclicked", &GameEngine::PGclicked );

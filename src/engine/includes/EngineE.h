@@ -17,6 +17,11 @@ using std::vector;
 extern array<SquareE, G2::BoardSize>            Sq;
 extern array<PieceE, G2::MAX_PLAYERS * G2::MAX_PIECES> Pp;
 extern void          InitBoardE();
+
+
+
+
+
 extern vector<MoveE> MoveStack;
 extern void          PushMove( MoveE mv );
 extern MoveE         PopMove();

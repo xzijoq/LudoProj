@@ -7,7 +7,7 @@ var Scale_l=Vector2.ZERO
 
 var MarginPercent=2 #use this to scale and move the top node
 
-var MinBotRow=4
+var MinBotRow=2
 var MinTopRow=2
 
 
@@ -45,14 +45,17 @@ func _ready():
 	SetGameScale()
 	pass
 
-
+var isY=0
 func SetGameScale():
 	Sc_Sz=get_viewport().size
 	#if x is 15 ,y > 18
 	var Extra=Gl.MAX_ROW+MinBotRow+MinTopRow
 	if Gl.MAX_ROW*Sc_Sz.y > Extra*Sc_Sz.x:
 		CellSize=Sc_Sz.x/Gl.MAX_ROW
+		isY=1
+
 	else:
+		isY=2
 		CellSize=Sc_Sz.y/Extra
 	
 	Scale_l=Vector2(CellSize/GSIZE,CellSize/GSIZE)

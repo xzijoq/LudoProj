@@ -1,6 +1,8 @@
 
 build
 build/**
+buildArm8
+buildArm8/**
 
 .mono
 .mono/**

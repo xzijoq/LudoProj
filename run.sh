@@ -7,26 +7,48 @@ echo $1
 
 
 cmake_b(){
-
+    echo "cmake --build and copy lib"
     cmake --build build -j8 #-v 
     cp ./build/compile_commands.json ./compile_commands.json 
     cp ./build/libludo_engine.so ./ludo/bin/libludo_engine.so
     echo ""
 }
+cmake_bArm8(){
+    echo "cmake --build and copy lib"
+    cmake --build buildArm8 -j8 #-v 
+    #cp ./buildArm8/compile_commands.json ./compile_commands.json 
+    cp ./buildArm8/libludo_engine.so ./ludo/bin/libludo_engineArm8.so
+    echo ""
+}
 
+Arm8Rebuild(){
+    echo "Arm8 --ANDROID--- rebuilding"
+    Arm8Clang='/home/babayaga/Android/Sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android30-clang++'
+    rm -r buildArm8
+    cmake -S./ -B buildArm8 -DCMAKE_BUILD_TYPE=Debug -DIsAndroid=true -DCMAKE_CXX_COMPILER=${Arm8Clang} -G "Ninja"  
+        
+}
 
 if [[ $1 = android ]]
 then
-    /home/babayaga/Android/Sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi30-clang++ -fPIC -o bin/GameEngine.o  -c src/GameEngine.cpp  -g -O3 -std=c++2a -I../godot-cpp/include -I../godot-cpp/include/core -I../godot-cpp/include/gen -I../godot-cpp/godot_headers -Isrc/engine/includes -Isrc
-    /home/babayaga/Android/Sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi30-clang++ -o bin/libludo_engine_android.so -shared src/GameEngine.o -L../godot-cpp/bin -l/home/babayaga/1SyncImpLinux/OutOfSyncCloud/godotProjects/godot-cpp/bin/libgodot-cpp.android.debug.armv7.a 
-
+    
+    if [[ $2 = af ]]
+    then
+        Arm8Rebuild
+        cmake_bArm8
+    else
+        echo "Arm8 --NOrebuild"
+    fi
+    cmake_bArm8
+  
 fi
 
 if [[ $1 = gg ]]
 then
     echo "not rebuilding"
-    cp ./build/compile_commands.json ./compile_commands.json 
-    cmake --build build
+    cmake_b
+    #cp ./build/compile_commands.json ./compile_commands.json 
+    #cmake --build build
 
 fi
 
@@ -49,18 +71,21 @@ if [[ $1 = "" ]]
 then
     echo "running: camke --build build and copy"
     cmake_b
+    #cmake_bArm8
 
 
 fi
 
 if [[ $1  = f  || $2 = f ]]
 then
-    echo "rebuilding"
+    echo "LINUX64 rebuilding"
     rm -r build
-    cmake -S./ -B build -DCMAKE_BUILD_TYPE=Debug -G "Ninja"  
+    cmake -S./ -B build -DIsAndroid=false -DCMAKE_BUILD_TYPE=Debug -G "Ninja"  
+    #Arm8Rebuild
    # cmake -E copy_directory src/engine/includes includes/Engine
-    cmake_b
 
+    cmake_b
+    #cmake_bArm8
 fi
 
 if [[ $1 = git ]]
@@ -71,7 +96,7 @@ then
     then
         git commit -m "test"
     else
-        git commit -m $2
+        git commit -m "${2}"
     fi
     git push origin main
 fi
@@ -90,8 +115,10 @@ CleanEmacsTemp(){
 if [[ $1 = clean ]]
 then
     rm -r ./ludo/bin/libludo_engine.so
+    rm -r ./ludo/bin/libludo_engineArm8.so
     ./src/engine/run.sh clean
     rm -r build
+    rm -r buildArm8
     CleanEmacsTemp
     cd src
     CleanEmacsTemp
